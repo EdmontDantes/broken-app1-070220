@@ -18,7 +18,7 @@ const usersRouter = require('./routes/users/usersRoutes');
 const app = express();
 
 mongoose
-  .connect(proces.env.MONGODB_URI, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
