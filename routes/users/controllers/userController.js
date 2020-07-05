@@ -60,7 +60,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       User.findById(id)
         .then((user) => {
-          if (params.name) user.name = params.name;
+          if (params.name) user.profile.name = params.name;
           if (params.email) user.email = params.email;
           if (params.address) user.address = params.address;
           return user;
@@ -77,7 +77,7 @@ module.exports = {
         .catch((err) => reject(err));
     });
   },
-  updatepassword: (params, id) => {
+  updatePassword: (params, id) => {
     return new Promise((resolve, reject) => {
       User.findById(id)
         .then((user) => {
