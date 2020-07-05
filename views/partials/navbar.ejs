@@ -37,15 +37,14 @@
       </li>
     </ul>
     <% if (!user) { %>
-    <span style="color: white; padding-left: 20px;"
-      ><a style="color: white;" href="/api/users/register">Register</a>/<a
+    <span style="color: white; padding-left: 20px;">
+      <a style="color: white;" href="/api/users/register">Register</a>/<a
         style="color: white;"
         href="/api/users/login"
         >Login</a
-      ></span
-    >
+      ></span>
 
-    <% }else{ %>
+    <% } else { %>
     <span style="color: #ee802e;">
       Hello &nbsp;<a style="color:#ee802e;" href="/api/users/profile"><%=user.profile.name.toUpperCase()%></a>&nbsp;|&nbsp;</span>
       <span><a style="color:white;" href="/logout">Logout</a></span>

@@ -3,12 +3,13 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-  register: async (req, res) => {
+  register: async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
       return res.status(422).json({ errors: errors.array() });
     try {
-      const { name, email, password } = body;
+      const { name, email, password } = req.body;
+      console.log(name, email, password)
       let user = await User.findOne({ email });
     
       if (user) {
@@ -16,6 +17,7 @@ module.exports = {
         return res.redirect('/api/users/register');
       }
       user = await new User({ profile: { name }, email, password });
+      console.log(user);
       await user.save();
       await req.login(user, (err) => {
         if (err) {
@@ -25,7 +27,7 @@ module.exports = {
         }
       });
     } catch (error) {
-      return res.status(500).json({ message: 'Failed', error });
+      return res.status(500).json({ message: 'Failed in catch after try', error });
     }
   },
   //   register: (req, res, next) => {

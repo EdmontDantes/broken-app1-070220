@@ -1,0 +1,9 @@
+BROKEN SHOPPER APP 1
+Fix the Broken App:
+-- Currently the app should be able to login, logout, go to the profile page when logged in, go to the update-profile page when logged in, update the profile, update the password. You should be able to click on the name in the nav bar to go to the profile.
+Places NOT to look:
+logout route
+req.flash
+-- If you clone remove the remote. Probably better to fork the repo
+--In the readme: note each error that you corrected
+Have a great 4th!

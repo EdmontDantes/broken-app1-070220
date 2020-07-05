@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
+const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true, required: true },
@@ -30,3 +31,5 @@ UserSchema.pre('save', function (next) {
     });
   });
 });
+
+module.exports = mongoose.model('user', UserSchema);

@@ -22,19 +22,20 @@ router.get('/', function (req, res, next) {
 //   check('password', 'Please Include a valid password').isLength({ min: 6 })
 // ];
 
-router.post('/register', userValidation, register);
 
 // const isAuth = (req, res, next) => {};
 
 router.get('/register', (req, res) => {
   console.log('login', req.session);
   if (req.isAuthenticated()) {
+
     return res.redirect('/');
   }
-
+  
   return res.render('auth/register', { errors: req.flash('errors') });
 });
 
+router.post('/register', userValidation, register);
 // router.post('/register', (req, res, next) => {
 //   User.findOne({ email: req.body.email }).then((user) => {
 //     if (user) {
@@ -54,21 +55,20 @@ router.get('/register', (req, res) => {
 // });
 
 router.get('/login', (req, res) => {
-  console.log('login', req.session);
+  // console.log('login', req.session);
   if (req.isAuthenticated()) {
-    return res.render('main/home');
+    console.log('USERINREGSTER', req.user)
+    // return res.render('main/home');
+    return res.redirect(301, '/');
   }
-  console.log('login');
   return res.render('auth/login', { errors: req.flash('errors') });
 });
 
-router.post(
-  '/local- login',
-  passport.authenticate('local', {
-    successRedirect: 'main/home',
-    failureRedirect: 'api/users/login',
-    failureFlash: true
-  })
+router.post('/login', passport.authenticate('local-login',{
+  successRedirect:'/',
+  failureRedirect:'/api/users/login',
+  failureFlash:true
+})
 );
 
 router.get('/profile', (req, res, next) => {
