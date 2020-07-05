@@ -3,6 +3,8 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  console.log('req.user::in-base-route:', req.user);
+  console.log('req.session::in-base-route:', req.session)
   res.render('main/home');
 });
 

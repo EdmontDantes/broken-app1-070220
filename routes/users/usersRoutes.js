@@ -56,6 +56,7 @@ router.post('/register', userValidation, register);
 
 router.get('/login', (req, res) => {
   // console.log('login', req.session);
+  console.log('req.user::', req.user)
   if (req.isAuthenticated()) {
     console.log('USERINREGSTER', req.user)
     // return res.render('main/home');

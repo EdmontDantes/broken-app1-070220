@@ -36,13 +36,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.use(
   session({
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
     store: new MongoStore({
       url: process.env.MONGODB_URI,
@@ -51,7 +49,11 @@ app.use(
     }),
     cookie: { maxAge: 60 * 60 * 1000 }
   })
-);
+  );
+  
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
